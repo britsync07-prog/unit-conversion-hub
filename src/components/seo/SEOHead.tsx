@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { SITE_URL, normalizePath, absoluteUrl } from '../../lib/site';
 
 export interface BreadcrumbItem {
   name: string;
@@ -29,9 +30,9 @@ export default function SEOHead({
   type = 'website',
 }: SEOHeadProps) {
   const location = useLocation();
-  const domain = 'https://unitconversionhub.com';
-  const currentPath = canonicalPath || location.pathname;
-  const canonicalUrl = `${domain}${currentPath.startsWith('/') ? currentPath : `/${currentPath}`}`;
+  const domain = SITE_URL;
+  const currentPath = normalizePath(canonicalPath || location.pathname);
+  const canonicalUrl = `${domain}${currentPath}`;
 
   useEffect(() => {
     // 1. Page Title
@@ -78,7 +79,7 @@ export default function SEOHead({
           '@type': 'ListItem',
           position: index + 1,
           name: item.name,
-          item: item.url.startsWith('http') ? item.url : `${domain}${item.url}`,
+          item: item.url.startsWith('http') ? item.url : absoluteUrl(item.url),
         })),
       };
 

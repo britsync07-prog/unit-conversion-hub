@@ -21,12 +21,16 @@ export default function Header() {
     <>
       <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-gray-200">
         <div className="container-custom flex h-14 sm:h-16 items-center justify-between">
-          {/* Zone 1: Brand Wordmark (Single text element) */}
+          {/* Zone 1: Brand */}
           <Link
             to="/"
-            className="text-xl font-bold tracking-tight text-blue-600 hover:text-blue-700 transition-colors flex items-center gap-1.5"
+            aria-label="UnitConversionHub home"
+            className="flex items-center gap-2 transition-opacity hover:opacity-80"
           >
-            UnitFlow
+            <img src="/favicon.svg" alt="" width="28" height="28" className="h-7 w-7 shrink-0" />
+            <span className="text-base sm:text-lg font-extrabold tracking-tight text-gray-900 whitespace-nowrap">
+              Unit<span className="text-blue-600">ConversionHub</span>
+            </span>
           </Link>
 
           {/* Zone 2: Navigation Links (Clean text with subtle underline/color on hover) */}
@@ -103,7 +107,7 @@ export default function Header() {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="px-3 py-1.5 rounded-lg hover:bg-gray-50 hover:text-gray-900"
               >
-                About UnitFlow
+                About UnitConversionHub
               </Link>
               <Link
                 to="/contact"

@@ -17,8 +17,8 @@ export default function ContactPage() {
   return (
     <div className="container-custom py-12 sm:py-16 max-w-2xl">
       <SEOHead
-        title="Contact & Support — UnitFlow"
-        description="Get in touch with the UnitFlow team to suggest new units, report a calculation inquiry, or submit feedback."
+        title="Contact & Support — UnitConversionHub"
+        description="Get in touch with the UnitConversionHub team to suggest new units, report a calculation inquiry, or submit feedback."
         canonicalPath="/contact"
         breadcrumbs={[
           { name: 'Home', url: '/' },
@@ -40,7 +40,7 @@ export default function ContactPage() {
             <CheckCircle className="w-12 h-12 text-emerald-600 mx-auto" />
             <h2 className="text-xl font-bold text-gray-900">Message Received</h2>
             <p className="text-sm text-gray-600">
-              Thank you for contacting UnitFlow! We typically review feedback and update conversions
+              Thank you for contacting UnitConversionHub! We typically review feedback and update conversions
               within 24-48 business hours.
             </p>
             <button
@@ -111,7 +111,7 @@ export default function ContactPage() {
       </div>
 
       <div className="mt-8 text-center text-xs text-gray-400">
-        UnitFlow respects your privacy. We never share or sell contact details.
+        UnitConversionHub respects your privacy. We never share or sell contact details.
       </div>
     </div>
   );

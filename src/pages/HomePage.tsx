@@ -157,7 +157,7 @@ export default function HomePage() {
                 <ShieldCheck className="w-4 h-4 text-blue-600 shrink-0" /> Private &amp; Account-Free
               </h3>
               <p className="leading-relaxed">
-                UnitFlow requires no user registration, email, or subscription. Your recent calculations
+                UnitConversionHub requires no user registration, email, or subscription. Your recent calculations
                 and favorite conversions are saved only on your local device.
               </p>
             </div>

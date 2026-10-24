@@ -2,11 +2,22 @@ import fs from 'fs';
 import path from 'path';
 import { categories } from '../src/data/categories.js';
 import { conversionPairs } from '../src/data/conversions.js';
+import { withSiteUrl } from '../src/lib/url.js';
 
-const DOMAIN = 'https://unitconversionhub.com';
+/**
+ * Canonical origin for this build. Set `SITE_URL` in CI to deploy to a custom
+ * domain; otherwise use the live Cloudflare Pages URL.
+ */
+const SITE_URL = (process.env.SITE_URL || 'https://unitconversionhub.pages.dev').replace(/\/+$/, '');
+
+interface RouteEntry {
+  url: string;
+  priority: string;
+  changefreq: 'daily' | 'weekly' | 'monthly' | 'yearly';
+}
 
 function generateSitemap() {
-  const staticRoutes = [
+  const staticRoutes: RouteEntry[] = [
     { url: '/', priority: '1.0', changefreq: 'daily' },
     { url: '/popular', priority: '0.8', changefreq: 'weekly' },
     { url: '/about', priority: '0.5', changefreq: 'monthly' },
@@ -16,13 +27,13 @@ function generateSitemap() {
     { url: '/cookie-policy', priority: '0.3', changefreq: 'yearly' },
   ];
 
-  const categoryRoutes = categories.map((c) => ({
+  const categoryRoutes: RouteEntry[] = categories.map((c) => ({
     url: `/${c.slug}`,
     priority: '0.9',
     changefreq: 'weekly',
   }));
 
-  const pairRoutes = conversionPairs.map((p) => ({
+  const pairRoutes: RouteEntry[] = conversionPairs.map((p) => ({
     url: `/convert/${p.slug}`,
     priority: '0.8',
     changefreq: 'weekly',
@@ -36,7 +47,7 @@ function generateSitemap() {
 ${allRoutes
   .map(
     (r) => `  <url>
-    <loc>${DOMAIN}${r.url}</loc>
+    <loc>${withSiteUrl(SITE_URL, r.url)}</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>${r.changefreq}</changefreq>
     <priority>${r.priority}</priority>
@@ -57,7 +68,7 @@ ${allRoutes
   const robotsTxt = `User-agent: *
 Allow: /
 
-Sitemap: ${DOMAIN}/sitemap.xml
+Sitemap: ${SITE_URL}/sitemap.xml
 `;
 
   const robotsPath = path.join(distDir, 'robots.txt');

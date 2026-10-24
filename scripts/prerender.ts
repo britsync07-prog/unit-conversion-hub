@@ -4,8 +4,16 @@ import { categories } from '../src/data/categories.js';
 import { conversionPairs } from '../src/data/conversions.js';
 import { units } from '../src/data/units.js';
 import { convert, formatValue, getUnitById } from '../src/lib/conversion-engine.js';
+import { withSiteUrl } from '../src/lib/url.js';
 
-const DOMAIN = 'https://unitconversionhub.com';
+/**
+ * Canonical origin for this build. Set `SITE_URL` in CI to deploy to a custom
+ * domain; otherwise use the live Cloudflare Pages URL. Never hardcode a domain
+ * we do not control.
+ */
+const SITE_URL = (process.env.SITE_URL || 'https://unitconversionhub.pages.dev').replace(/\/+$/, '');
+const FALLBACK_ORIGIN = 'https://unitconversionhub.pages.dev';
+const OG_IMAGE = `${SITE_URL}/og-image.png`;
 
 interface RouteMeta {
   route: string;
@@ -15,6 +23,14 @@ interface RouteMeta {
   breadcrumbs: { name: string; url: string }[];
   faqs?: { question: string; answer: string }[];
   bodyHtml?: string;
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }
 
 function buildRouteMetadata(): RouteMeta[] {
@@ -43,7 +59,7 @@ function buildRouteMetadata(): RouteMeta[] {
       .map((p) => {
         const f = getUnitById(p.fromId);
         const t = getUnitById(p.toId);
-        return f && t ? `<li><a href="/convert/${p.slug}" style="color: #2563eb; font-weight: 600;">${f.name} to ${t.name} (${f.symbol} to ${t.symbol})</a></li>` : '';
+        return f && t ? `<li><a href="/convert/${p.slug}/" style="color: #2563eb; font-weight: 600;">${f.name} to ${t.name} (${f.symbol} to ${t.symbol})</a></li>` : '';
       })
       .join('');
 
@@ -159,20 +175,18 @@ function prerender() {
 
   console.log(`[SEO PRERENDER] Starting pre-rendering for ${routes.length} routes...`);
 
-  // Strip default fallback meta description / social tags from template before route injection
+  // Strip fallback social tags from the template, then inject per-route tags.
   templateHtml = templateHtml
-    .replace(/<meta name="description".*?>/gs, '')
-    .replace(/<meta property="og:title".*?>/gs, '')
-    .replace(/<meta property="og:description".*?>/gs, '')
-    .replace(/<meta property="og:type".*?>/gs, '')
-    .replace(/<meta name="twitter:card".*?>/gs, '')
-    .replace(/<meta name="twitter:title".*?>/gs, '')
-    .replace(/<meta name="twitter:description".*?>/gs, '');
+    .replace(/<link rel="canonical"[^>]*>/g, '')
+    .replace(/<meta name="description"[^>]*>/g, '')
+    .replace(/<meta property="og:(title|description|type|url|image|site_name)"[^>]*>/g, '')
+    .replace(/<meta name="twitter:(card|title|description|image)"[^>]*>/g, '')
+    .replace(new RegExp(FALLBACK_ORIGIN, 'g'), SITE_URL);
 
   let generatedCount = 0;
 
   for (const item of routes) {
-    const canonicalUrl = `${DOMAIN}${item.route}`;
+    const canonicalUrl = withSiteUrl(SITE_URL, item.route);
 
     const breadcrumbSchema = {
       '@context': 'https://schema.org',
@@ -181,7 +195,7 @@ function prerender() {
         '@type': 'ListItem',
         position: idx + 1,
         name: b.name,
-        item: b.url.startsWith('http') ? b.url : `${DOMAIN}${b.url}`,
+        item: b.url.startsWith('http') ? b.url : withSiteUrl(SITE_URL, b.url),
       })),
     };
 
@@ -202,32 +216,39 @@ function prerender() {
       faqSchemaStr = `<script type="application/ld+json" id="seo-schema-faq">${JSON.stringify(faqSchema)}</script>`;
     }
 
+    const title = escapeHtml(item.title);
+    const description = escapeHtml(item.description);
+
     const headTags = `
-      <title>${item.title}</title>
-      <meta name="description" content="${item.description}" />
+      <title>${title}</title>
+      <meta name="description" content="${description}" />
       <link rel="canonical" href="${canonicalUrl}" />
-      <meta property="og:title" content="${item.title}" />
-      <meta property="og:description" content="${item.description}" />
+      <meta property="og:site_name" content="UnitConversionHub" />
+      <meta property="og:title" content="${title}" />
+      <meta property="og:description" content="${description}" />
       <meta property="og:url" content="${canonicalUrl}" />
       <meta property="og:type" content="website" />
+      <meta property="og:image" content="${OG_IMAGE}" />
+      <meta property="og:image:alt" content="UnitConversionHub — free, precise online unit converter" />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="${item.title}" />
-      <meta name="twitter:description" content="${item.description}" />
+      <meta name="twitter:title" content="${title}" />
+      <meta name="twitter:description" content="${description}" />
+      <meta name="twitter:image" content="${OG_IMAGE}" />
       <script type="application/ld+json" id="seo-schema-breadcrumbs">${JSON.stringify(breadcrumbSchema)}</script>
       ${faqSchemaStr}
     `;
 
-    let pageHtml = templateHtml.replace(/<title>.*?<\/title>/s, headTags);
+    let pageHtml = templateHtml.replace(/<title>[\s\S]*?<\/title>/, () => headTags);
 
     if (item.bodyHtml) {
-      pageHtml = pageHtml.replace('<div id="root"></div>', `<div id="root">${item.bodyHtml}</div>`);
+      pageHtml = pageHtml.replace('<div id="root"></div>', () => `<div id="root">${item.bodyHtml}</div>`);
     }
 
     let targetFile: string;
     if (item.route === '/') {
       targetFile = path.join(distDir, 'index.html');
     } else {
-      const routeDir = path.join(distDir, item.route.substring(1));
+      const routeDir = path.join(distDir, item.route.replace(/^\/+/, ''));
       if (!fs.existsSync(routeDir)) {
         fs.mkdirSync(routeDir, { recursive: true });
       }
@@ -237,6 +258,17 @@ function prerender() {
     fs.writeFileSync(targetFile, pageHtml, 'utf-8');
     generatedCount++;
   }
+
+  // Fallback for static hosts that look for a 404 document.
+  const notFoundHtml = templateHtml
+    .replace(
+      /<title>[\s\S]*?<\/title>/,
+      () =>
+        `<title>404 — Page Not Found | UnitConversionHub</title>
+      <meta name="description" content="The requested conversion page could not be found. Browse the UnitConversionHub directory or return home." />
+      <meta name="robots" content="noindex" />`
+    );
+  fs.writeFileSync(path.join(distDir, '404.html'), notFoundHtml, 'utf-8');
 
   console.log(`[SEO PRERENDER SUCCESS] Pre-rendered ${generatedCount} static HTML pages in dist/!`);
 }

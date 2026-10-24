@@ -5,8 +5,8 @@ export default function CookiePolicyPage() {
   return (
     <div className="container-custom py-12 sm:py-16 max-w-3xl">
       <SEOHead
-        title="Cookie Policy — UnitFlow"
-        description="Learn about cookies and local storage usage on UnitFlow."
+        title="Cookie Policy — UnitConversionHub"
+        description="Learn about cookies and local storage usage on UnitConversionHub."
         canonicalPath="/cookie-policy"
         breadcrumbs={[
           { name: 'Home', url: '/' },
@@ -28,9 +28,9 @@ export default function CookiePolicyPage() {
         </section>
 
         <section>
-          <h2 className="text-lg font-bold text-gray-900 mb-2">2. How UnitFlow Uses Cookies &amp; Local Storage</h2>
+          <h2 className="text-lg font-bold text-gray-900 mb-2">2. How UnitConversionHub Uses Cookies &amp; Local Storage</h2>
           <p>
-            UnitFlow does not set first-party tracking cookies. We utilize standard client-side browser
+            UnitConversionHub does not set first-party tracking cookies. We utilize standard client-side browser
             storage (<code>localStorage</code>) to remember:
           </p>
           <ul className="list-disc list-inside mt-2 space-y-1 text-gray-600">
@@ -44,7 +44,7 @@ export default function CookiePolicyPage() {
           <p>
             Third-party vendors, including Google, use cookies to serve ads based on a user's prior
             visits to this or other websites. Google's use of advertising cookies enables it and its
-            partners to serve ads to users based on their visit to UnitFlow and/or other sites on the
+            partners to serve ads to users based on their visit to UnitConversionHub and/or other sites on the
             Internet.
           </p>
         </section>

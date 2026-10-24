@@ -1,13 +1,42 @@
 {
-  "name": "react-example",
+  "name": "unit-conversion-hub",
+  "version": "1.0.0",
   "private": true,
-  "version": "0.0.0",
+  "description": "A fast, accurate, and fully static unit converter covering length, weight, temperature, volume, area, speed, data, and more — with 130 pre-rendered conversion pages.",
+  "author": "Musfiqur Rahman Saimon",
+  "license": "MIT",
+  "homepage": "https://unitconversionhub.pages.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/britsync07-prog/unit-conversion-hub.git"
+  },
+  "bugs": {
+    "url": "https://github.com/britsync07-prog/unit-conversion-hub/issues"
+  },
+  "keywords": [
+    "unit-converter",
+    "unit-conversion",
+    "measurement",
+    "calculator",
+    "metric",
+    "imperial",
+    "react",
+    "typescript",
+    "vite",
+    "seo",
+    "static-site"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
-    "build": "npx vite build && npx tsx scripts/prerender.ts && npx tsx scripts/generate-sitemap.ts",
+    "build": "vite build && tsx scripts/prerender.ts && tsx scripts/generate-sitemap.ts",
+    "build:client": "vite build",
     "preview": "vite preview",
-    "clean": "rm -rf dist server.js",
+    "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\"",
+    "test": "tsx --test tests/*.test.ts",
     "lint": "tsc --noEmit"
   },
   "dependencies": {

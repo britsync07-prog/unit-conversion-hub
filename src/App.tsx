@@ -39,6 +39,7 @@ export default function App() {
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/terms" element={<TermsPage />} />
             <Route path="/cookie-policy" element={<CookiePolicyPage />} />
+            <Route path="/404" element={<NotFoundPage />} />
             <Route path="/convert/:pairSlug" element={<ConversionPairPage />} />
             <Route path="/:categorySlug" element={<CategoryPage />} />
             <Route path="*" element={<NotFoundPage />} />

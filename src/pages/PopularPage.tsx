@@ -11,7 +11,7 @@ export default function PopularPage() {
   return (
     <div className="container-custom py-6 sm:py-10 flex flex-col gap-8 sm:gap-12">
       <SEOHead
-        title="Popular Unit Conversions — Most Used Conversion Tools | UnitFlow"
+        title="Popular Unit Conversions — Most Used Conversion Tools | UnitConversionHub"
         description="Browse the most requested online unit converters across length, weight, temperature, area, volume, and speed for US, UK, Canada, and global systems."
         canonicalPath="/popular"
         breadcrumbs={[

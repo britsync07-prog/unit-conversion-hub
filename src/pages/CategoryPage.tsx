@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { ChevronRight, ArrowRight, Layers, TableProperties } from 'lucide-react';
 import { categories } from '../data/categories';
 import { conversionPairs } from '../data/conversions';
@@ -7,6 +7,7 @@ import { getUnitsByCategory, formatValue, convert } from '../lib/conversion-engi
 import MainConverter from '../components/converter/MainConverter';
 import AdPlaceholder from '../components/ui/AdPlaceholder';
 import SEOHead from '../components/seo/SEOHead';
+import NotFoundPage from './NotFoundPage';
 
 export default function CategoryPage() {
   const { categorySlug } = useParams<{ categorySlug: string }>();
@@ -14,7 +15,9 @@ export default function CategoryPage() {
   const category = categories.find((c) => c.slug === categorySlug);
 
   if (!category) {
-    return <Navigate to="/404" replace />;
+    // Render the 404 page at the current URL instead of redirecting to `/404`,
+    // which previously had no route and caused an infinite navigation loop.
+    return <NotFoundPage />;
   }
 
   const categoryUnits = getUnitsByCategory(category.id);
@@ -24,7 +27,7 @@ export default function CategoryPage() {
   return (
     <div className="container-custom py-6 sm:py-10 flex flex-col gap-8 sm:gap-12">
       <SEOHead
-        title={`${category.name} Converter — Fast & Free Online Calculator | UnitFlow`}
+        title={`${category.name} Converter — Fast & Free Online Calculator | UnitConversionHub`}
         description={`Convert between all common ${category.name.toLowerCase()} units including metric, imperial, and US customary measurements. Fast, free, and accurate.`}
         canonicalPath={`/${category.slug}`}
         breadcrumbs={[
@@ -159,7 +162,7 @@ export default function CategoryPage() {
               the UK, and Australia, compared with the US Customary system in the United States.
             </p>
             <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-              UnitFlow applies NIST and International System of Units (SI) verified conversion factors
+              UnitConversionHub applies NIST and International System of Units (SI) verified conversion factors
               to guarantee zero round-off deviation across all operations.
             </p>
           </section>

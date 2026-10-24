@@ -8,7 +8,7 @@ export default function NotFoundPage() {
   return (
     <div className="container-custom py-16 sm:py-24 text-center max-w-xl">
       <SEOHead
-        title="404 — Page Not Found | UnitFlow"
+        title="404 — Page Not Found | UnitConversionHub"
         description="The requested conversion page could not be found. Browse our conversion directory or return home."
       />
       <div className="inline-block px-3 py-1 bg-red-50 text-red-700 text-xs font-semibold rounded-full mb-4">

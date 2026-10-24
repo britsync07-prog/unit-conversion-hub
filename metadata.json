@@ -1,5 +1,5 @@
 {
-  "name": "UnitFlow – Fast & Precise Free Unit Converter",
+  "name": "UnitConversionHub – Fast & Precise Free Unit Converter",
   "description": "Convert length, weight, temperature, volume, area, speed, time, and more instantly with extreme precision and mobile-first design.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]

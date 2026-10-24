@@ -7,20 +7,20 @@ export default function AboutPage() {
   return (
     <div className="container-custom py-12 sm:py-16 max-w-4xl">
       <SEOHead
-        title="About UnitFlow — Free High-Precision Unit Converter"
-        description="Learn about UnitFlow, our mission to provide lightning-fast, privacy-first, and NIST-verified unit conversion calculators for everyone."
+        title="About UnitConversionHub — Free High-Precision Unit Converter"
+        description="Learn about UnitConversionHub, our mission to provide lightning-fast, privacy-first, and NIST-verified unit conversion calculators for everyone."
         canonicalPath="/about"
         breadcrumbs={[
           { name: 'Home', url: '/' },
-          { name: 'About UnitFlow', url: '/about' },
+          { name: 'About UnitConversionHub', url: '/about' },
         ]}
       />
 
       <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">
-        About UnitFlow
+        About UnitConversionHub
       </h1>
       <p className="text-lg text-gray-600 mb-10 leading-relaxed">
-        UnitFlow is a fast, free, and privacy-focused unit conversion platform engineered specifically
+        UnitConversionHub is a fast, free, and privacy-focused unit conversion platform engineered specifically
         for everyday users, students, engineers, and professionals.
       </p>
 
@@ -32,7 +32,7 @@ export default function AboutPage() {
             confusing nested dropdowns, and slow server-rendered scripts that refresh the whole page.
           </p>
           <p>
-            UnitFlow was created to answer one question immediately:
+            UnitConversionHub was created to answer one question immediately:
             <strong className="text-gray-900 block mt-2 p-3 bg-gray-50 border-l-4 border-blue-600 rounded">
               "What do I need to enter, what units am I converting, and what is the answer?"
             </strong>

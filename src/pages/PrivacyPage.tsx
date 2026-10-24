@@ -5,8 +5,8 @@ export default function PrivacyPage() {
   return (
     <div className="container-custom py-12 sm:py-16 max-w-3xl">
       <SEOHead
-        title="Privacy Policy — UnitFlow"
-        description="Read the UnitFlow privacy policy. We do not store personal information or calculation data."
+        title="Privacy Policy — UnitConversionHub"
+        description="Read the UnitConversionHub privacy policy. We do not store personal information or calculation data."
         canonicalPath="/privacy"
         breadcrumbs={[
           { name: 'Home', url: '/' },
@@ -22,7 +22,7 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-lg font-bold text-gray-900 mb-2">1. Overview</h2>
           <p>
-            UnitFlow ("we", "our", or "us") provides a free online unit conversion utility. We believe
+            UnitConversionHub ("we", "our", or "us") provides a free online unit conversion utility. We believe
             that simple web calculators should not require sharing sensitive personal information.
             This Privacy Policy describes our practices regarding information collection.
           </p>
@@ -31,7 +31,7 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-lg font-bold text-gray-900 mb-2">2. Information We Do NOT Collect</h2>
           <p>
-            When you use UnitFlow to convert measurements (such as centimeters to inches or kilograms to
+            When you use UnitConversionHub to convert measurements (such as centimeters to inches or kilograms to
             pounds), your numerical inputs and calculations execute locally within your browser. We do
             not transmit, log, or store your conversion values on our servers.
           </p>
@@ -50,7 +50,7 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-lg font-bold text-gray-900 mb-2">4. Third-Party Advertising &amp; Cookies</h2>
           <p>
-            To keep this service free for all users worldwide, UnitFlow may display non-intrusive banner
+            To keep this service free for all users worldwide, UnitConversionHub may display non-intrusive banner
             advertisements through reputable advertising partners such as Google AdSense. These
             advertising partners may use standard cookies or web beacons to serve ads based on prior
             visits to this or other websites. You may opt out of personalized advertising by visiting{' '}

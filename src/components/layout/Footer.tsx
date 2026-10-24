@@ -53,7 +53,7 @@ export default function Footer() {
               Trust &amp; Legal
             </h3>
             <ul className="space-y-2.5 text-sm text-gray-600">
-              <li><Link to="/about" className="hover:text-blue-600 transition-colors">About UnitFlow</Link></li>
+              <li><Link to="/about" className="hover:text-blue-600 transition-colors">About UnitConversionHub</Link></li>
               <li><Link to="/contact" className="hover:text-blue-600 transition-colors">Contact Us</Link></li>
               <li><Link to="/privacy" className="hover:text-blue-600 transition-colors">Privacy Policy</Link></li>
               <li><Link to="/terms" className="hover:text-blue-600 transition-colors">Terms of Use</Link></li>
@@ -63,7 +63,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-          <p>© {new Date().getFullYear()} UnitFlow. Free online unit conversion tools for everyday, educational, and professional use.</p>
+          <p>© {new Date().getFullYear()} UnitConversionHub. Free online unit conversion tools for everyday, educational, and professional use.</p>
           <div className="flex gap-6">
             <Link to="/" className="hover:text-blue-600 transition-colors">Home</Link>
             <Link to="/popular" className="hover:text-blue-600 transition-colors">Popular</Link>

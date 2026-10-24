@@ -1,1 +1,20 @@
+# Short category URLs from the pre-rename design. Redirect permanently so
+# crawlers and old bookmarks land on the canonical, trailing-slash page.
+/length              /length-converter/              301
+/weight              /weight-converter/              301
+/temperature         /temperature-converter/         301
+/area                /area-converter/                301
+/volume              /volume-converter/              301
+/time                /time-converter/                301
+/speed               /speed-converter/               301
+/pressure            /pressure-converter/            301
+/energy              /energy-converter/              301
+/power               /power-converter/               301
+/force               /force-converter/               301
+/data                /data-converter/                301
+/angle               /angle-converter/               301
+/fuel-economy        /fuel-economy-converter/        301
+
+# SPA fallback: every valid route is prerendered, this only covers client-side
+# navigation and unknown paths (which render the in-app 404 page).
 /* /index.html 200

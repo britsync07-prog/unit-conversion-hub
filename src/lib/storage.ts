@@ -5,8 +5,8 @@ export interface SavedConversion {
   timestamp?: number;
 }
 
-const RECENT_KEY = 'unitflow_recent_conversions';
-const FAVORITES_KEY = 'unitflow_favorite_conversions';
+const RECENT_KEY = 'unitconversionhub_recent_conversions';
+const FAVORITES_KEY = 'unitconversionhub_favorite_conversions';
 
 export function getRecentConversions(): SavedConversion[] {
   if (typeof window === 'undefined') return [];

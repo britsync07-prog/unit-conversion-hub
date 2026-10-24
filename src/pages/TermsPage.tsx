@@ -5,8 +5,8 @@ export default function TermsPage() {
   return (
     <div className="container-custom py-12 sm:py-16 max-w-3xl">
       <SEOHead
-        title="Terms of Use — UnitFlow"
-        description="Review the terms and conditions for using UnitFlow free unit conversion tools."
+        title="Terms of Use — UnitConversionHub"
+        description="Review the terms and conditions for using UnitConversionHub free unit conversion tools."
         canonicalPath="/terms"
         breadcrumbs={[
           { name: 'Home', url: '/' },
@@ -22,7 +22,7 @@ export default function TermsPage() {
         <section>
           <h2 className="text-lg font-bold text-gray-900 mb-2">1. Acceptance of Terms</h2>
           <p>
-            By accessing or using UnitFlow, you acknowledge and agree to abide by these Terms of Use.
+            By accessing or using UnitConversionHub, you acknowledge and agree to abide by these Terms of Use.
             If you disagree with any portion of these terms, you should discontinue use of the website.
           </p>
         </section>
@@ -30,7 +30,7 @@ export default function TermsPage() {
         <section>
           <h2 className="text-lg font-bold text-gray-900 mb-2">2. Permitted Use</h2>
           <p>
-            UnitFlow is provided free of charge for personal, educational, research, and non-commercial
+            UnitConversionHub is provided free of charge for personal, educational, research, and non-commercial
             commercial utility purposes. Automated scraping, bulk denial-of-service attempts, or
             malicious misuse of our site resources is strictly prohibited.
           </p>
@@ -41,7 +41,7 @@ export default function TermsPage() {
           <p>
             While every effort has been taken to ensure all conversion multipliers, algorithms, and
             benchmarks adhere rigorously to international standards (including SI and NIST definitions),
-            the tools on UnitFlow are provided on an "as is" and "as available" basis without warranties
+            the tools on UnitConversionHub are provided on an "as is" and "as available" basis without warranties
             of any kind.
           </p>
           <p className="mt-2 text-xs text-gray-500">
@@ -53,7 +53,7 @@ export default function TermsPage() {
         <section>
           <h2 className="text-lg font-bold text-gray-900 mb-2">4. Limitation of Liability</h2>
           <p>
-            Under no circumstances shall UnitFlow or its operators be held liable for any direct,
+            Under no circumstances shall UnitConversionHub or its operators be held liable for any direct,
             indirect, incidental, or consequential damages resulting from the use or inability to use
             the conversion tools provided on this website.
           </p>
