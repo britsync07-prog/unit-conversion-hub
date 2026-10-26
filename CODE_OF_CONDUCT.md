@@ -13,4 +13,4 @@ We as members, contributors, and leaders pledge to make participation in our com
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the project maintainer, Musfiqur Rahman Saimon, at `musfiqursaimon7@gmail.com`.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the project maintainer, Musfiqur Rahman Saimon, at `saimon@ascentraconsulting.co.uk`.
